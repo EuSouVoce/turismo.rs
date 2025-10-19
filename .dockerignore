@@ -1,0 +1,6 @@
+.DS_Store
+node_modules
+.env
+bun.lockb
+apps/*/node_modules
+packages/*/node_modules

@@ -1,0 +1,21 @@
+{
+  "name": "turismo-rs-monorepo",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "bun --filter web dev",
+    "build": "bun run --filter \"./apps/*\" --filter \"./packages/*\" build",
+    "db:generate": "bun --filter db exec prisma generate",
+    "db:migrate": "bun --filter db exec prisma migrate dev",
+    "docker:dev": "docker-compose -f docker-compose.yml up --build",
+    "docker:stop": "docker-compose -f docker-compose.yml down"
+  },
+  "devDependencies": {
+    "bun-types": "latest",
+    "typescript": "^5.4.5"
+  }
+}

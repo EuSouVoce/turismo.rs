@@ -1,0 +1,17 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun --watch src/index.ts",
+    "build": "bun build src/index.ts --outdir ./dist"
+  },
+  "dependencies": {
+    "hono": "^4.3.2"
+  },
+  "devDependencies": {
+    "bun-types": "latest",
+    "eslint-config-custom": "workspace:*"
+  }
+}

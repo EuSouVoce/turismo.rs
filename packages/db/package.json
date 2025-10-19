@@ -1,0 +1,18 @@
+{
+  "name": "db",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "build": "echo 'db build script placeholder'"
+  },
+  "dependencies": {
+    "@prisma/client": "5.13.0"
+  },
+  "devDependencies": {
+    "prisma": "5.13.0"
+  },
+  "exports": {
+    "./client": "./node_modules/.prisma/client/index.js"
+  }
+}

@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Tenant {
+  id        String    @id @default(cuid())
+  name      String
+  subdomain String?   @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  users     User[]
+  partners  Partner[]
+}
+
+model User {
+  id        String    @id @default(cuid())
+  email     String    @unique
+  name      String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  tenantId  String
+  tenant    Tenant    @relation(fields: [tenantId], references: [id])
+}
+
+model Partner {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  type        PartnerType
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  tenantId    String
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+
+  hotelDetails Hotel?
+}
+
+enum PartnerType {
+  HOTEL
+  RESTAURANT
+  TRANSFER
+  ATTRACTION
+}
+
+model Hotel {
+  id        String    @id @default(cuid())
+  partnerId String    @unique
+  partner   Partner   @relation(fields: [partnerId], references: [id], onDelete: Cascade)
+  rooms     Int
+  stars     Float
+}
